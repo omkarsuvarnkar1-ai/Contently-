@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>
+@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}
+::-webkit-scrollbar{display:none;}
+
+@keyframes ambientPulse {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.65; transform: scale(1.06); }
+}
+
+@keyframes gleamSweep {
+  0% { transform: translateX(-100%) rotate(25deg); }
+  100% { transform: translateX(250%) rotate(25deg); }
+}
+
+@keyframes springIn {
+  0% { opacity: 0; transform: translateY(24px) scale(0.94); }
+  60% { opacity: 1; transform: translateY(-4px) scale(1.02); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-ambient-slow {
+  animation: ambientPulse 8s ease-in-out infinite;
+}
+
+.animate-ambient-slow-delay {
+  animation: ambientPulse 10s ease-in-out infinite 3s;
+}
+
+.toast-spring-in {
+  animation: springIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.gleam-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.gleam-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 80%
+  );
+  animation: gleamSweep 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"surface-tint":"#4d44e3","tertiary-fixed-dim":"#d0bcff","on-surface":"#0b1c30","on-tertiary-fixed-variant":"#5516be","surface-bright":"#f8f9ff","background":"#f8f9ff","error":"#ba1a1a","surface-container-high":"#dce9ff","primary":"#3525cd","on-secondary-fixed":"#001f26","secondary-fixed-dim":"#4cd7f6","tertiary-container":"#6f3dd9","on-background":"#0b1c30","on-error-container":"#93000a","inverse-surface":"#213145","surface-dim":"#cbdbf5","outline":"#777587","on-surface-variant":"#464555","surface-container-lowest":"#ffffff","tertiary-fixed":"#e9ddff","on-tertiary-container":"#e3d5ff","surface-variant":"#d3e4fe","primary-container":"#4f46e5","on-tertiary-fixed":"#23005c","secondary-fixed":"#acedff","tertiary":"#571ac0","on-primary-fixed-variant":"#3323cc","on-secondary-container":"#006172","on-primary-container":"#dad7ff","secondary":"#00687a","on-error":"#ffffff","surface-container-low":"#eff4ff","error-container":"#ffdad6","on-secondary-fixed-variant":"#004e5c","primary-fixed-dim":"#c3c0ff","surface":"#f8f9ff","on-secondary":"#ffffff","primary-fixed":"#e2dfff","inverse-primary":"#c3c0ff","on-primary":"#ffffff","outline-variant":"#c7c4d8","secondary-container":"#57dffe","on-tertiary":"#ffffff","surface-container-highest":"#d3e4fe","surface-container":"#e5eeff","on-primary-fixed":"#0f0069","inverse-on-surface":"#eaf1ff"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"margin-mobile":"1rem","margin-tablet":"1.5rem","space-lg":"1.5rem","space-md":"1rem","gutter-sm":"1rem","space-sm":"0.5rem","space-xs":"0.25rem","margin-desktop":"2.5rem","gutter-lg":"2rem","margin":"2rem","gutter":"1.5rem","space-3xl":"4rem","space-2xl":"3rem","space-xl":"2rem"},"fontFamily":{"label-sm":["Plus Jakarta Sans"],"display-hero-mobile":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"code-sm":["JetBrains Mono"],"headline-xl":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"display-hero":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"]},"fontSize":{"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"700"}],"display-hero-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"800"}],"headline-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["14px",{"lineHeight":"22px","letterSpacing":"0em","fontWeight":"500"}],"label-md":["13px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"600"}],"code-sm":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"500"}],"headline-xl":["40px",{"lineHeight":"48px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-lg-mobile":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"700"}],"headline-sm":["18px",{"lineHeight":"26px","letterSpacing":"-0.01em","fontWeight":"600"}],"display-hero":["56px",{"lineHeight":"64px","letterSpacing":"-0.03em","fontWeight":"800"}],"body-sm":["13px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"400"}],"body-lg":["16px",{"lineHeight":"26px","letterSpacing":"-0.005em","fontWeight":"500"}],"headline-xl-mobile":["30px",{"lineHeight":"38px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}]}}}};</script>  <link rel="stylesheet" href="../shared/demo-app.css"/>
+</head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary selection:text-on-primary"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest border-r border-slate-200/80 shadow-[0_1px_8px_rgba(15,23,42,0.04)] z-50 flex flex-col justify-between"><div class="flex flex-col min-h-0 flex-1"><div class="h-16 px-space-lg flex items-center gap-space-sm border-b border-slate-100 flex-shrink-0"><div class="h-8 w-8 rounded-lg bg-gradient-to-tr from-primary via-primary-container to-secondary flex items-center justify-center text-white shadow-sm"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg></div><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-extrabold">Contently</span></div><div class="overflow-y-auto flex-1 px-space-md py-space-sm"><nav class="flex flex-col gap-1" data-active-classes="bg-primary-container text-on-primary-container font-bold shadow-sm"><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="dashboard" href="#"><svg class="w-4 h-4 text-slate-500 group-hover:text-primary transition-colors flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg><span class="font-label-md text-label-md flex-1">Dashboard</span></a><a class="flex items-center justify-between px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="ai-studio" href="#"><div class="flex items-center gap-space-sm"><svg class="w-4 h-4 text-slate-500 group-hover:text-primary transition-colors flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path><path d="M5 3v4"></path><path d="M19 17v4"></path><path d="M3 5h4"></path><path d="M17 19h4"></path></svg><span class="font-label-md text-label-md">AI Studio</span></div><span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded-full bg-secondary-container/80 text-on-secondary-container font-semibold tracking-wide uppercase text-[10px]">New</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="content-repurposing" href="#"><svg class="w-4 h-4 text-slate-500 group-hover:text-primary transition-colors flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="m17 2 4 4-4 4"></path><path d="M3 11v-1a4 4 0 0 1 4-4h14"></path><path d="m7 22-4-4 4-4"></path><path d="M21 13v1a4 4 0 0 1-4 4H3"></path></svg><span class="font-label-md text-label-md flex-1">Content Repurposing</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="templates" href="#"><svg class="w-4 h-4 text-slate-500 group-hover:text-primary transition-colors flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect height="7" rx="1" width="7" x="3" y="3"></rect><rect height="7" rx="1" width="7" x="14" y="3"></rect><rect height="7" rx="1" width="7" x="14" y="14"></rect><rect height="7" rx="1" width="7" x="3" y="14"></rect></svg><span class="font-label-md text-label-md flex-1">Templates</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="content-library" href="#"><svg class="w-4 h-4 text-slate-500 group-hover:text-primary transition-colors flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"></path></svg><span class="font-label-md text-label-md flex-1">Content Library</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="content-editor" href="#"><svg class="w-4 h-4 text-slate-500 group-hover:text-primary transition-colors flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4"></path></svg><span class="font-label-md text-label-md flex-1">Content Editor</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="content-planner" href="#"><svg class="w-4 h-4 text-slate-500 group-hover:text-primary transition-colors flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="4"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg><span class="font-label-md text-label-md flex-1">Content Planner</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="brand-kit" href="#"><svg class="w-4 h-4 text-slate-500 group-hover:text-primary transition-colors flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="13.5" cy="6.5" r=".5"></circle><circle cx="17.5" cy="10.5" r=".5"></circle><circle cx="8.5" cy="7.5" r=".5"></circle><circle cx="6.5" cy="12.5" r=".5"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path></svg><span class="font-label-md text-label-md flex-1">Brand Kit</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="seo-assistant" href="#"><svg class="w-4 h-4 text-slate-500 group-hover:text-primary transition-colors flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="m21 21-4.3-4.3"></path><circle cx="10" cy="10" r="7"></circle><path d="M10 7v6"></path><path d="M7 10h6"></path></svg><span class="font-label-md text-label-md flex-1">SEO Assistant</span></a><div class="my-space-sm mx-space-sm h-px bg-slate-200/70"></div><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="profile-settings" href="#"><svg class="w-4 h-4 text-slate-500 group-hover:text-primary transition-colors flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg><span class="font-label-md text-label-md flex-1">Profile &amp; Settings</span></a></nav></div></div><div class="p-space-md border-t border-slate-100 flex-shrink-0"><div class="flex items-center gap-space-sm p-space-sm rounded-xl bg-surface-container-low border border-slate-200/50"><img alt="Omkar avatar" class="w-9 h-9 rounded-full object-cover ring-2 ring-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ9-i1Rr_McZcEqHc300dlnvuSl4X_Jr1rT14gwFcUXtv77NmEtv6OO15aZDoL77BbQt8I0v6Gwm8gjSzG2mxICW1gndG6NwIaZk4ydrYnQqO4TYzUfv3OpPvhd6q5CSiTp_f1L9KFMsZCMXcQ8XiwS815pzIOaNc-69wDKmVt4Yz8Gg5uZ2cFsnBljp66brow6kVCYb64xr8tZZsprLOgT4x0Z6q5CPuKpgVUvuc"/><div class="flex flex-col min-w-0 flex-1"><span class="font-label-md text-label-md text-on-surface truncate">Omkar</span><span class="font-label-sm text-label-sm text-primary font-bold">Pro Creator</span></div><svg class="w-4 h-4 text-on-surface-variant flex-shrink-0 cursor-pointer hover:text-on-surface" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="7 15 12 20 17 15"></polyline><polyline points="7 9 12 4 17 9"></polyline></svg></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/80 backdrop-blur-xl border-b border-slate-200/70 shadow-[0_1px_8px_rgba(15,23,42,0.04)] z-40 flex items-center justify-between px-space-xl"><div class="flex items-center gap-space-sm w-80"><div class="flex items-center gap-space-xs w-full bg-surface-container-low px-space-md py-space-xs rounded-lg text-on-surface-variant border border-slate-200/60"><svg class="w-4 h-4 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg><span class="font-body-sm text-body-sm text-outline flex-1">Search content, prompts, files...</span><kbd class="font-code-sm text-code-sm bg-surface-container-lowest text-on-surface-variant px-space-xs py-0.5 rounded shadow-sm border border-slate-200/70">⌘K</kbd></div></div><div class="flex items-center gap-space-md"><button class="interactive-ai-trigger flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-gradient-to-r from-primary-container to-secondary text-on-primary font-label-md text-label-md shadow-[0_4px_14px_0_rgba(79,70,229,0.2)] hover:opacity-95 transition-all" type="button"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg><span>Create</span></button><button class="relative p-space-xs rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error"></span></button><img alt="Omkar avatar" class="w-8 h-8 rounded-full object-cover shadow-sm ring-2 ring-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ9-i1Rr_McZcEqHc300dlnvuSl4X_Jr1rT14gwFcUXtv77NmEtv6OO15aZDoL77BbQt8I0v6Gwm8gjSzG2mxICW1gndG6NwIaZk4ydrYnQqO4TYzUfv3OpPvhd6q5CSiTp_f1L9KFMsZCMXcQ8XiwS815pzIOaNc-69wDKmVt4Yz8Gg5uZ2cFsnBljp66brow6kVCYb64xr8tZZsprLOgT4x0Z6q5CPuKpgVUvuc"/></div></header><main class="relative pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Subtle Ambient Glow Orbs -->
+<div class="relative w-full overflow-hidden">
+<div class="absolute -top-32 -left-32 w-96 h-96 bg-primary-fixed/30 rounded-full blur-3xl pointer-events-none -z-10 animate-ambient-slow"></div>
+<div class="absolute top-48 right-12 w-80 h-80 bg-secondary-fixed/40 rounded-full blur-3xl pointer-events-none -z-10 animate-ambient-slow-delay"></div>
+<!-- Main Outer Padding Workspace -->
+<div class="px-margin-desktop py-space-xl max-w-[1600px] w-full mx-auto space-y-space-xl">
+<!-- Top Header & Floating Save State Ribbon -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="space-y-1">
+<div class="flex items-center gap-space-xs">
+<span class="font-code-sm text-code-sm text-primary uppercase tracking-wider">Workspace Hub</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary/40"></span>
+<span class="font-label-sm text-label-sm text-outline">v2.4.8 Engine</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Profile &amp; Settings</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+            Manage your creator profile, workspace preferences, API keys, and notification triggers.
+          </p>
+</div>
+<!-- Global Save Pill Indicator -->
+<div class="flex items-center gap-space-sm bg-surface-container-lowest p-2 pl-4 rounded-xl shadow-md transition-all duration-300" id="save-status-bar">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-md text-label-md text-on-surface">Unsaved changes</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-1.5 rounded-lg bg-surface-container text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-colors" id="reset-btn" type="button">
+              Reset
+            </button>
+<button class="gleam-shimmer px-space-md py-1.5 rounded-lg bg-gradient-to-r from-primary via-primary-container to-secondary text-on-primary font-label-md text-label-md shadow-sm hover:opacity-95 active:scale-95 transition-all" id="save-btn" type="button">
+              Save Preferences
+            </button>
+</div>
+</div>
+</div>
+<!-- Segmented Navigation Tabs -->
+<div class="bg-surface-container-low p-1.5 rounded-xl shadow-sm inline-flex flex-wrap gap-1">
+<button class="tab-btn px-space-md py-2 rounded-lg font-label-md text-label-md bg-surface-container-lowest text-primary font-bold shadow-sm transition-all" data-tab="general" type="button">
+          General Profile
+        </button>
+<button class="tab-btn px-space-md py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" data-tab="ai-models" type="button">
+          AI &amp; Model Preferences
+        </button>
+<button class="tab-btn px-space-md py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" data-tab="connected" type="button">
+          Connected Accounts
+        </button>
+<button class="tab-btn px-space-md py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" data-tab="api" type="button">
+          API &amp; Webhooks
+        </button>
+<button class="tab-btn px-space-md py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" data-tab="billing" type="button">
+          Billing &amp; Plan
+        </button>
+</div>
+<!-- Asymmetric Grid: 2 Columns for Rich Content -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-gutter-lg items-start">
+<!-- Left / Center Column (Primary Inputs & Configuration) -->
+<div class="xl:col-span-8 space-y-gutter-lg">
+<!-- SECTION 1: Creator Profile -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm space-y-space-lg">
+<div class="flex items-center justify-between pb-space-sm bg-surface-container-lowest">
+<div class="space-y-0.5">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Section 01</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Creator Profile</h2>
+</div>
+<span class="font-code-sm text-code-sm px-2.5 py-1 rounded-full bg-surface-container-low text-on-surface-variant">Public ID #8104</span>
+</div>
+<!-- Avatar & Quick Asset Manager -->
+<div class="flex flex-col sm:flex-row items-center sm:items-start gap-space-lg p-space-md rounded-xl bg-surface-container-low">
+<div class="relative group">
+<img class="w-24 h-24 rounded-2xl object-cover shadow-md" data-alt="High quality studio portrait headshot of creator Omkar smiling subtly, cinematic soft studio rim lighting, minimal slate indigo gradient background, crisp details, professional tech influencer attire, medium close up" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrkBEJ5l1w3iwQaWmXRnHIQ2Zte4wooSQ-khGxC97wIm_WD95KC_9TkE2A_Kzjx2cCBgLOmIHJvN-uT-OFnoe6wApJJJ3EInWSCIsw9B0bC1N2BnnYvu2aKcYJOOf3vxSMBUzc48YQ7Hw78v3Ah3kMIhePYUQ4DBsflT5WXjFNp2QB0tHONNTRUCpkrfw122Qmny-K0DVpLwWIwR-2iIlU_MW0oKghiIMbu7Ix4h4"/>
+<div class="absolute inset-0 bg-primary/20 backdrop-blur-[2px] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<svg class="w-6 h-6 text-on-primary" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="12" cy="13" r="3"></circle></svg>
+</div>
+</div>
+<div class="flex-1 space-y-space-xs text-center sm:text-left">
+<div class="flex flex-col sm:flex-row sm:items-center gap-space-xs">
+<h3 class="font-label-md text-label-md text-on-surface font-bold">Profile Visual Identity</h3>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed">Live on syndication</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Recommended size: 400x400px. PNG, JPG or WebP up to 4MB.</p>
+<div class="flex flex-wrap items-center gap-space-sm pt-2 justify-center sm:justify-start">
+<button class="px-space-md py-1.5 rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm hover:bg-surface-container transition-colors" type="button">
+                    Change Photo
+                  </button>
+<button class="px-space-md py-1.5 rounded-lg bg-error-container text-on-error-container font-label-md text-label-md hover:bg-error hover:text-on-error transition-colors" type="button">
+                    Remove
+                  </button>
+</div>
+</div>
+</div>
+<!-- Identity Inputs Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="space-y-space-xs">
+<label class="block font-label-md text-label-md text-on-surface">Full Name</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest px-space-md py-2.5 rounded-lg text-on-surface font-body-md text-body-md shadow-sm focus:outline-none focus:ring-0 focus:bg-surface-container-low transition-all" type="text" value="Omkar V."/>
+</div>
+</div>
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<label class="block font-label-md text-label-md text-on-surface">Email Address</label>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary font-bold">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    Verified
+                  </span>
+</div>
+<input class="w-full bg-surface-container-lowest px-space-md py-2.5 rounded-lg text-on-surface font-body-md text-body-md shadow-sm focus:outline-none focus:bg-surface-container-low transition-all" type="email" value="omkar@contently.ai"/>
+</div>
+<div class="sm:col-span-2 space-y-space-xs">
+<label class="block font-label-md text-label-md text-on-surface">Creator Handle</label>
+<div class="flex items-center bg-surface-container-lowest rounded-lg shadow-sm px-space-md py-2.5 focus-within:bg-surface-container-low transition-colors">
+<span class="font-code-sm text-code-sm text-primary font-bold pr-1">https://contently.ai/@</span>
+<input class="flex-1 bg-transparent p-0 border-0 text-on-surface font-code-sm text-code-sm focus:ring-0" type="text" value="omkar_builds"/>
+</div>
+</div>
+<div class="sm:col-span-2 space-y-space-xs">
+<div class="flex items-center justify-between">
+<label class="block font-label-md text-label-md text-on-surface">Public Bio</label>
+<span class="font-code-sm text-code-sm text-outline">74 / 160</span>
+</div>
+<textarea class="w-full bg-surface-container-lowest p-space-md rounded-xl text-on-surface font-body-md text-body-md shadow-sm focus:outline-none focus:bg-surface-container-low transition-all resize-none" rows="3">Founding creator &amp; AI technologist crafting multi-channel distribution systems.</textarea>
+</div>
+</div>
+</div>
+<!-- SECTION 2: AI & LLM Engine Settings -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm space-y-space-lg">
+<div class="flex items-center justify-between pb-space-sm bg-surface-container-lowest">
+<div class="space-y-0.5">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-tertiary font-bold">Section 02</span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-semibold">Inference Hub</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">AI &amp; LLM Engine Settings</h2>
+</div>
+<svg class="w-6 h-6 text-tertiary" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<!-- Model Selector Dropdown Tile -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="space-y-space-xs">
+<label class="block font-label-md text-label-md text-on-surface">Default Generation Core</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-low px-space-md py-2.5 rounded-lg text-on-surface font-body-md text-body-md pr-10 focus:outline-none focus:bg-surface-container transition-all cursor-pointer">
+<option selected="">Contently LLM-4x Balanced (Fine-tuned)</option>
+<option>GPT-4o (OpenAI Omni Multi-modal)</option>
+<option>Claude 3.5 Sonnet (Anthropic Context-200k)</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-space-md text-on-surface-variant">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Optimized for high-engagement social hooks and long-form thought leadership.</p>
+</div>
+<!-- Temperature Slider Control -->
+<div class="space-y-space-xs p-space-md rounded-xl bg-surface-container-low">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface">Creativity Temperature</label>
+<span class="font-code-sm text-code-sm px-2 py-0.5 rounded bg-surface-container-lowest text-primary font-bold" id="temp-val">0.70</span>
+</div>
+<input class="w-full h-2 bg-surface-container rounded-lg appearance-none cursor-pointer accent-primary" id="temperature-slider" max="1.0" min="0.1" step="0.05" type="range" value="0.70"/>
+<div class="flex justify-between font-label-sm text-label-sm text-outline">
+<span>Precise (0.2)</span>
+<span class="text-primary font-semibold">Balanced (0.7)</span>
+<span>Visionary (1.0)</span>
+</div>
+</div>
+</div>
+<!-- Feature Toggles Group -->
+<div class="space-y-space-sm pt-2">
+<!-- Toggle 1: Auto-save drafts -->
+<div class="flex items-center justify-between p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="space-y-0.5 pr-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Auto-save drafts to Cloud Vault</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-bold">30s Sync</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Persists unfinished editor states locally and syncs encrypted snapshots to the team repository.</p>
+</div>
+<button aria-checked="true" class="toggle-switch relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full bg-primary transition-colors duration-200 ease-in-out focus:outline-none" role="switch" type="button">
+<span class="translate-x-6 inline-block h-5 w-5 transform rounded-full bg-on-primary shadow-sm transition duration-200 ease-in-out mt-0.5"></span>
+</button>
+</div>
+<!-- Toggle 2: Real-time Brand Voice sync -->
+<div class="flex items-center justify-between p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="space-y-0.5 pr-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Real-time Brand Voice sync</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-bold">Active</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Injects your selected Brand Kit tone markers into prompt preambles across all generative tools.</p>
+</div>
+<button aria-checked="true" class="toggle-switch relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full bg-primary transition-colors duration-200 ease-in-out focus:outline-none" role="switch" type="button">
+<span class="translate-x-6 inline-block h-5 w-5 transform rounded-full bg-on-primary shadow-sm transition duration-200 ease-in-out mt-0.5"></span>
+</button>
+</div>
+<!-- Toggle 3: Reduced motion / animations -->
+<div class="flex items-center justify-between p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="space-y-0.5 pr-space-md">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Reduced motion &amp; UI shimmer</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Suppresses generative particle bursts, gleam sweeps, and 3D card perspective hover tilts.</p>
+</div>
+<button aria-checked="false" class="toggle-switch relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full bg-outline-variant transition-colors duration-200 ease-in-out focus:outline-none" role="switch" type="button">
+<span class="translate-x-0.5 inline-block h-5 w-5 transform rounded-full bg-on-primary shadow-sm transition duration-200 ease-in-out mt-0.5"></span>
+</button>
+</div>
+</div>
+</div>
+<!-- SECTION 3: Connected Publishing Integrations -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm space-y-space-lg">
+<div class="flex items-center justify-between pb-space-sm bg-surface-container-lowest">
+<div class="space-y-0.5">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">Section 03</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Connected Publishing Integrations</h2>
+</div>
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-bold">3 of 6 Channels Active</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- LinkedIn Card -->
+<div class="flex flex-col justify-between p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-[#0077b5]/10 flex items-center justify-center text-[#0077b5] flex-shrink-0">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.59 1.59 0 0 0 1.6-1.6c0-.88-.71-1.6-1.6-1.6a1.6 1.6 0 0 0-1.6 1.6c0 .88.72 1.6 1.6 1.6m1.4 9.74v-8.37H5.06v8.37h2.8z"></path></svg>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface font-bold">LinkedIn</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Connected as <strong class="text-on-surface">Omkar</strong></p>
+</div>
+</div>
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+</div>
+<div class="flex items-center justify-between pt-space-md">
+<span class="font-code-sm text-code-sm text-outline">Synced 12m ago</span>
+<button class="px-space-md py-1 rounded-lg bg-surface-container-lowest text-error font-label-sm text-label-sm hover:bg-error-container transition-colors shadow-sm" type="button">
+                    Disconnect
+                  </button>
+</div>
+</div>
+<!-- Twitter / X Card -->
+<div class="flex flex-col justify-between p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-inverse-surface/10 flex items-center justify-center text-inverse-surface flex-shrink-0">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface font-bold">X (Twitter)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Connected as <strong class="text-on-surface">@omkar_builds</strong></p>
+</div>
+</div>
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+</div>
+<div class="flex items-center justify-between pt-space-md">
+<span class="font-code-sm text-code-sm text-outline">Synced 2h ago</span>
+<button class="px-space-md py-1 rounded-lg bg-surface-container-lowest text-error font-label-sm text-label-sm hover:bg-error-container transition-colors shadow-sm" type="button">
+                    Disconnect
+                  </button>
+</div>
+</div>
+<!-- Instagram Card -->
+<div class="flex flex-col justify-between p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-tertiary-container/10 flex items-center justify-center text-tertiary flex-shrink-0">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface font-bold">Instagram Creator</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Connected as <strong class="text-on-surface">@omkar_creative</strong></p>
+</div>
+</div>
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+</div>
+<div class="flex items-center justify-between pt-space-md">
+<span class="font-code-sm text-code-sm text-outline">Stories &amp; Reels</span>
+<button class="px-space-md py-1 rounded-lg bg-surface-container-lowest text-error font-label-sm text-label-sm hover:bg-error-container transition-colors shadow-sm" type="button">
+                    Disconnect
+                  </button>
+</div>
+</div>
+<!-- Ghost CMS / Medium Card -->
+<div class="flex flex-col justify-between p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all border-dashed">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest flex items-center justify-center text-outline flex-shrink-0">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 4.5v15m7.5-7.5h-15" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface font-bold">Ghost CMS / Medium</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Not connected</p>
+</div>
+</div>
+<span class="w-2.5 h-2.5 rounded-full bg-outline-variant"></span>
+</div>
+<div class="flex items-center justify-between pt-space-md">
+<span class="font-code-sm text-code-sm text-outline">Long-form Syndication</span>
+<button class="px-space-md py-1 rounded-lg bg-primary-container text-on-primary-container font-label-sm text-label-sm hover:bg-primary hover:text-on-primary transition-colors shadow-sm" type="button">
+                    Connect Publication
+                  </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side Rail (Workspace, Usage Metrics & Creative Snapshot) -->
+<div class="xl:col-span-4 space-y-gutter-lg">
+<!-- SECTION 4: Workspace & Plan Overview Card -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm space-y-space-lg">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="space-y-0.5">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Section 04</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Workspace &amp; Plan</h2>
+</div>
+<div class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.504-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.004-6.75a3 3 0 01-3 3h-3a3 3 0 01-3-3m9 0V4.875A1.875 1.875 0 0013.125 3h-2.25A1.875 1.875 0 009 4.875V8.625" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+</div>
+<!-- Current Tier Block -->
+<div class="p-space-md rounded-xl bg-gradient-to-br from-surface-container-low to-surface-container space-y-space-sm border border-outline-variant/30">
+<div class="flex items-center justify-between">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-primary font-bold tracking-wide uppercase">Active Tier</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-primary/10 text-primary border border-primary/20">Freemium Model</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface font-extrabold" id="billing-tier-name">Pro Creator Tier</div>
+</div>
+<span class="font-headline-md text-headline-md text-on-surface font-black" id="billing-plan-price">₹499<span class="font-body-sm text-body-sm text-outline font-normal">/mo</span></span>
+</div>
+<div class="flex items-center justify-between text-xs text-on-surface-variant">
+<span>Reasonable Indian SaaS Pricing</span>
+<span class="text-secondary font-semibold">UPI Autopay · Cards · Netbanking</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Next invoice on November 28, 2026. Annual plan at ₹4,790/yr (Save 20% · ₹399/mo). Free forever tier available at ₹0.</p>
+<button id="manage-subscription-btn" class="w-full mt-2 py-2 rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm hover:bg-surface-container-high transition-colors flex items-center justify-center gap-space-xs cursor-pointer" type="button">
+<span>Manage Subscription &amp; Plans</span>
+<svg class="w-4 h-4 text-outline" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+</div>
+<!-- Token Consumption Visualization -->
+<div class="space-y-space-xs pt-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">AI Generation Tokens</span>
+<span class="font-code-sm text-code-sm text-primary font-bold">36.8% Used</span>
+</div>
+<!-- Custom Visual Gauge Progress Bar -->
+<div class="w-full h-3 rounded-full bg-surface-container-low overflow-hidden flex">
+<div class="bg-gradient-to-r from-primary via-primary-container to-secondary h-full rounded-full transition-all duration-700" style="width: 36.8%;"></div>
+</div>
+<div class="flex items-center justify-between font-code-sm text-code-sm text-on-surface-variant pt-1">
+<span>184,200 used</span>
+<span>500,000 / month</span>
+</div>
+</div>
+<!-- Inline SVG Data Visualizer: Weekly Token Consumption Sparkline -->
+<div class="p-space-md rounded-xl bg-surface-container-low space-y-2">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface font-bold uppercase tracking-wider">7-Day Burn Velocity</span>
+<span class="font-code-sm text-code-sm text-secondary font-bold">+14.2% DoD</span>
+</div>
+<svg class="w-full h-16 text-primary overflow-visible" fill="none" viewbox="0 0 280 64">
+<defs>
+<lineargradient id="tokenBurnGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#3525cd" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#3525cd" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<path d="M0 48 Q 45 42 70 28 T 140 32 T 210 14 T 280 8 L 280 64 L 0 64 Z" fill="url(#tokenBurnGrad)"></path>
+<path d="M0 48 Q 45 42 70 28 T 140 32 T 210 14 T 280 8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5"></path>
+<circle cx="210" cy="14" fill="#3525cd" r="3.5"></circle>
+<circle cx="280" cy="8" fill="#00687a" r="4"></circle>
+</svg>
+<div class="flex justify-between font-code-sm text-code-sm text-outline pt-1 text-[10px]">
+<span>Mon</span>
+<span>Tue</span>
+<span>Wed</span>
+<span>Thu</span>
+<span>Fri</span>
+<span>Sat</span>
+<span>Today</span>
+</div>
+</div>
+<!-- Saved Brand Kits Quota -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="space-y-0.5">
+<span class="font-label-md text-label-md text-on-surface font-bold">Saved Brand Profiles</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">3 of 10 used this cycle</p>
+</div>
+<div class="flex -space-x-2 overflow-hidden">
+<div class="inline-block h-8 w-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs shadow-sm">OV</div>
+<div class="inline-block h-8 w-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-xs shadow-sm">SaaS</div>
+<div class="inline-block h-8 w-8 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center font-bold text-xs shadow-sm">AI</div>
+<div class="inline-block h-8 w-8 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center font-bold text-xs shadow-sm">+7</div>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors flex items-center justify-center gap-space-xs" type="button">
+<svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 4.5v15m7.5-7.5h-15" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span>Add New Brand Kit Profile</span>
+</button>
+</div>
+<!-- Studio Feature Banner Card (Photo-Rich Creative Atmosphere) -->
+<div class="relative overflow-hidden rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm space-y-space-md">
+<div class="relative z-10 space-y-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">Multi-modal Studio</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Creative Voice Engine</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Experience lightning fast voice repurposing with our new autonomous pipeline.</p>
+</div>
+<div class="relative h-44 rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="High tech minimalist creative audio studio workbench with modern neon slate glow, ambient indigo LED mood lights, high precision editing software on curved monitor display, sleek creator audio equipment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAy0VSQsg-bfK9yUgZDs2QI_Hwnx0RMlVeXT6ak6zFPBto2GfjWcSal-EiRaq4e9eN8OQIQFnQjAPk_f56TJwJkmlOzsNXJiRrCzqsl1_LLN6-oDV6XM6U1oHK0MgJQi1sTY32SHpB0ref-VEeQ3KKnsLPa8vLo-w6oOKG4isQIhKCDsCr-GadhbUNbytNMWOYPL0zSNPmxuzWBeXIe61DBiodiM5GOOnsmwTpoQO0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-transparent to-transparent flex items-end p-space-md">
+<span class="font-label-sm text-label-sm text-on-primary font-bold">Audio Transcripts &amp; Hook Extraction Ready</span>
+</div>
+</div>
+</div>
+<!-- Danger Zone Mini Card -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm flex items-center justify-between">
+<div class="space-y-0.5">
+<span class="font-label-md text-label-md text-error font-bold">Delete Workspace</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Revoke all tokens and wipe data</p>
+</div>
+<button class="px-space-md py-1.5 rounded-lg bg-error-container text-on-error-container font-label-md text-label-md hover:bg-error hover:text-on-error transition-colors" type="button">
+              Delete
+            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Toast Notification Element (Hidden by default, springs in via JS) -->
+<div class="fixed bottom-8 right-8 z-50 transform translate-y-16 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-space-sm bg-surface-container-lowest px-space-lg py-space-md rounded-2xl shadow-xl" id="toast-notification">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface font-bold">Preferences Synchronized</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Profile metadata and LLM temperature updated.</p>
+</div>
+</div>
+<!-- Client-side Interactive Script -->
+<script>
+    (function initSettingsDashboard() {
+      // Temperature Slider interaction
+      const tempSlider = document.getElementById('temperature-slider');
+      const tempVal = document.getElementById('temp-val');
+      if (tempSlider && tempVal) {
+        tempSlider.addEventListener('input', (e) => {
+          tempVal.textContent = parseFloat(e.target.value).toFixed(2);
+        });
+      }
+
+      // Switch toggles interaction
+      const toggles = document.querySelectorAll('.toggle-switch');
+      toggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+          const isChecked = toggle.getAttribute('aria-checked') === 'true';
+          const newState = !isChecked;
+          toggle.setAttribute('aria-checked', newState);
+          const handle = toggle.querySelector('span');
+
+          if (newState) {
+            toggle.classList.remove('bg-outline-variant');
+            toggle.classList.add('bg-primary');
+            handle.classList.remove('translate-x-0.5');
+            handle.classList.add('translate-x-6');
+          } else {
+            toggle.classList.remove('bg-primary');
+            toggle.classList.add('bg-outline-variant');
+            handle.classList.remove('translate-x-6');
+            handle.classList.add('translate-x-0.5');
+          }
+        });
+      });
+
+      // Navigation tab switching
+      const tabButtons = document.querySelectorAll('.tab-btn');
+      tabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabButtons.forEach(b => {
+            b.classList.remove('bg-surface-container-lowest', 'text-primary', 'font-bold', 'shadow-sm');
+            b.classList.add('text-on-surface-variant');
+          });
+          btn.classList.add('bg-surface-container-lowest', 'text-primary', 'font-bold', 'shadow-sm');
+          btn.classList.remove('text-on-surface-variant');
+        });
+      });
+
+      // Save Toast Trigger
+      const saveBtn = document.getElementById('save-btn');
+      const resetBtn = document.getElementById('reset-btn');
+      const toast = document.getElementById('toast-notification');
+      const saveStatusBar = document.getElementById('save-status-bar');
+
+      function showToast() {
+        if (!toast) return;
+        toast.classList.remove('translate-y-16', 'opacity-0', 'pointer-events-none');
+        toast.classList.add('translate-y-0', 'opacity-100');
+        
+        setTimeout(() => {
+          toast.classList.add('translate-y-16', 'opacity-0', 'pointer-events-none');
+          toast.classList.remove('translate-y-0', 'opacity-100');
+        }, 3200);
+      }
+
+      if (saveBtn) {
+        saveBtn.addEventListener('click', () => {
+          showToast();
+          if (saveStatusBar) {
+            const indicator = saveStatusBar.querySelector('.bg-secondary');
+            if (indicator) {
+              indicator.classList.remove('animate-pulse');
+              indicator.classList.add('bg-surface-tint');
+            }
+          }
+        });
+      }
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          if (tempSlider && tempVal) {
+            tempSlider.value = 0.70;
+            tempVal.textContent = "0.70";
+          }
+        });
+      }
+    })();
+  </script>
+</div></main></div>  <script src="../shared/demo-app.js"></script>
+</body></html>

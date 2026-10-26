@@ -1,0 +1,21 @@
+{
+  "name": "contently-ai-content-platform",
+  "version": "1.0.0",
+  "description": "Contently - AI-Powered Content Creation Platform (Clickable Frontend Prototype)",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "backend": "python -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000 --reload",
+    "test": "pytest backend/tests"
+  },
+  "keywords": [
+    "contently",
+    "ai",
+    "content-platform",
+    "prototype",
+    "stitch"
+  ],
+  "author": "Contently Team",
+  "license": "ISC"
+}

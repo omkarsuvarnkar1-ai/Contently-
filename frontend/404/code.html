@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>404 — Route Not Found | Contently</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <style>
+    @layer base {
+      html, body { margin:0; padding:0; }
+      body { overscroll-behavior: none; }
+    }
+    @keyframes ambientPulse {
+      0%, 100% { opacity: 0.35; transform: scale(1); }
+      50% { opacity: 0.65; transform: scale(1.06); }
+    }
+    .animate-ambient-slow {
+      animation: ambientPulse 8s ease-in-out infinite;
+    }
+  </style>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-tint": "#4d44e3",
+            "on-surface": "#0b1c30",
+            "surface-bright": "#f8f9ff",
+            "background": "#f8f9ff",
+            "error": "#ba1a1a",
+            "surface-container-high": "#dce9ff",
+            "primary": "#3525cd",
+            "tertiary-container": "#6f3dd9",
+            "on-background": "#0b1c30",
+            "surface-dim": "#cbdbf5",
+            "outline": "#777587",
+            "on-surface-variant": "#464555",
+            "surface-container-lowest": "#ffffff",
+            "primary-container": "#4f46e5",
+            "secondary-fixed": "#acedff",
+            "tertiary": "#571ac0",
+            "secondary": "#00687a",
+            "surface-container-low": "#eff4ff",
+            "surface": "#f8f9ff",
+            "on-primary": "#ffffff",
+            "surface-container": "#e5eeff"
+          },
+          fontFamily: {
+            sans: ["Plus Jakarta Sans", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="/shared/demo-app.css"/>
+</head>
+<body class="bg-surface font-sans text-on-surface antialiased min-h-screen flex flex-col justify-between">
+  <!-- Top Minimal Nav -->
+  <header class="h-16 px-6 max-w-[1400px] mx-auto w-full flex items-center justify-between border-b border-surface-container">
+    <a href="/" class="flex items-center gap-2.5">
+      <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-primary-container via-tertiary-container to-secondary flex items-center justify-center text-white shadow-sm">
+        <span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+      </div>
+      <span class="font-bold text-xl text-on-surface tracking-tight">Contently</span>
+    </a>
+    <div class="flex items-center gap-3">
+      <a href="/login" class="text-sm font-semibold text-on-surface-variant hover:text-on-surface px-3 py-1.5 rounded-lg transition-colors">Log In</a>
+      <a href="/dashboard" class="text-sm font-semibold text-white px-4 py-2 rounded-xl bg-primary hover:bg-primary-container shadow-sm transition-all">Go to Workspace</a>
+    </div>
+  </header>
+
+  <!-- Central Content -->
+  <main class="relative flex-1 flex items-center justify-center px-6 py-16">
+    <!-- Ambient glowing backdrop orbs -->
+    <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-[600px] h-[360px] bg-gradient-to-tr from-primary-container/20 via-[#06B6D4]/15 to-tertiary-container/20 blur-[100px] rounded-full pointer-events-none animate-ambient-slow"></div>
+
+    <div class="max-w-2xl mx-auto text-center relative z-10 flex flex-col items-center">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white shadow-sm mb-6 text-primary text-xs font-bold border border-outline-variant/40">
+        <span class="material-symbols-outlined text-sm">explore_off</span>
+        <span>ERROR 404 • ROUTE UNCHARTED</span>
+      </div>
+
+      <h1 class="text-6xl sm:text-7xl font-extrabold tracking-tight text-on-surface mb-4">
+        Lost in the <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-container via-tertiary-container to-secondary">creative void</span>.
+      </h1>
+
+      <p class="text-base sm:text-lg text-on-surface-variant max-w-lg mb-8 leading-relaxed">
+        The route you requested doesn't exist or has moved. Every other workspace engine is online and calibrated.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-4 mb-12">
+        <a href="/dashboard" class="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-primary-container via-tertiary-container to-secondary text-white font-bold text-sm shadow-md hover:shadow-lg transition-all">
+          <span class="material-symbols-outlined text-lg">home</span>
+          <span>Return to Dashboard</span>
+        </a>
+        <a href="/" class="flex items-center gap-2 px-6 py-3 rounded-xl bg-surface-container-lowest text-on-surface font-semibold text-sm border border-surface-container shadow-sm hover:bg-surface-container transition-all">
+          <span class="material-symbols-outlined text-lg">arrow_back</span>
+          <span>Back to Landing Page</span>
+        </a>
+      </div>
+
+      <!-- Quick Platform Sitemap -->
+      <div class="w-full p-6 rounded-2xl bg-surface-container-lowest border border-surface-container shadow-sm text-left">
+        <h2 class="text-xs font-bold text-outline uppercase tracking-wider mb-3">Quick Navigation Directory</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm">
+          <a href="/dashboard" class="p-2 rounded-lg hover:bg-surface-container text-on-surface flex items-center gap-1.5 transition-colors"><span class="material-symbols-outlined text-base text-primary">home</span>Dashboard</a>
+          <a href="/ai-studio" class="p-2 rounded-lg hover:bg-surface-container text-on-surface flex items-center gap-1.5 transition-colors"><span class="material-symbols-outlined text-base text-secondary">auto_awesome</span>AI Studio</a>
+          <a href="/content-editor" class="p-2 rounded-lg hover:bg-surface-container text-on-surface flex items-center gap-1.5 transition-colors"><span class="material-symbols-outlined text-base text-tertiary">edit_note</span>Editor</a>
+          <a href="/content-library" class="p-2 rounded-lg hover:bg-surface-container text-on-surface flex items-center gap-1.5 transition-colors"><span class="material-symbols-outlined text-base text-primary">folder_open</span>Library</a>
+          <a href="/templates" class="p-2 rounded-lg hover:bg-surface-container text-on-surface flex items-center gap-1.5 transition-colors"><span class="material-symbols-outlined text-base text-secondary">dashboard_customize</span>Templates</a>
+          <a href="/content-planner" class="p-2 rounded-lg hover:bg-surface-container text-on-surface flex items-center gap-1.5 transition-colors"><span class="material-symbols-outlined text-base text-tertiary">calendar_month</span>Planner</a>
+          <a href="/brand-kit" class="p-2 rounded-lg hover:bg-surface-container text-on-surface flex items-center gap-1.5 transition-colors"><span class="material-symbols-outlined text-base text-primary">palette</span>Brand Kit</a>
+          <a href="/profile-settings" class="p-2 rounded-lg hover:bg-surface-container text-on-surface flex items-center gap-1.5 transition-colors"><span class="material-symbols-outlined text-base text-secondary">manage_accounts</span>Settings</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="py-4 text-center text-xs text-outline border-t border-surface-container">
+    Contently AI Content Platform — Interactive Frontend Prototype
+  </footer>
+
+  <script src="/shared/demo-app.js"></script>
+</body>
+</html>

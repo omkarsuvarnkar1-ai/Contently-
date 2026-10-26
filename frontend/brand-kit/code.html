@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>
+@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}
+::-webkit-scrollbar{display:none;}
+
+@keyframes ambientPulse {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.65; transform: scale(1.06); }
+}
+
+@keyframes gleamSweep {
+  0% { transform: translateX(-100%) rotate(25deg); }
+  100% { transform: translateX(250%) rotate(25deg); }
+}
+
+@keyframes springIn {
+  0% { opacity: 0; transform: translateY(24px) scale(0.94); }
+  60% { opacity: 1; transform: translateY(-4px) scale(1.02); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-ambient-slow {
+  animation: ambientPulse 8s ease-in-out infinite;
+}
+
+.animate-ambient-slow-delay {
+  animation: ambientPulse 10s ease-in-out infinite 3s;
+}
+
+.toast-spring-in {
+  animation: springIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.gleam-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.gleam-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 80%
+  );
+  animation: gleamSweep 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"surface-tint":"#4d44e3","tertiary-fixed-dim":"#d0bcff","on-surface":"#0b1c30","on-tertiary-fixed-variant":"#5516be","surface-bright":"#f8f9ff","background":"#f8f9ff","error":"#ba1a1a","surface-container-high":"#dce9ff","primary":"#3525cd","on-secondary-fixed":"#001f26","secondary-fixed-dim":"#4cd7f6","tertiary-container":"#6f3dd9","on-background":"#0b1c30","on-error-container":"#93000a","inverse-surface":"#213145","surface-dim":"#cbdbf5","outline":"#777587","on-surface-variant":"#464555","surface-container-lowest":"#ffffff","tertiary-fixed":"#e9ddff","on-tertiary-container":"#e3d5ff","surface-variant":"#d3e4fe","primary-container":"#4f46e5","on-tertiary-fixed":"#23005c","secondary-fixed":"#acedff","tertiary":"#571ac0","on-primary-fixed-variant":"#3323cc","on-secondary-container":"#006172","on-primary-container":"#dad7ff","secondary":"#00687a","on-error":"#ffffff","surface-container-low":"#eff4ff","error-container":"#ffdad6","on-secondary-fixed-variant":"#004e5c","primary-fixed-dim":"#c3c0ff","surface":"#f8f9ff","on-secondary":"#ffffff","primary-fixed":"#e2dfff","inverse-primary":"#c3c0ff","on-primary":"#ffffff","outline-variant":"#c7c4d8","secondary-container":"#57dffe","on-tertiary":"#ffffff","surface-container-highest":"#d3e4fe","surface-container":"#e5eeff","on-primary-fixed":"#0f0069","inverse-on-surface":"#eaf1ff"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"margin-mobile":"1rem","margin-tablet":"1.5rem","space-lg":"1.5rem","space-md":"1rem","gutter-sm":"1rem","space-sm":"0.5rem","space-xs":"0.25rem","margin-desktop":"2.5rem","gutter-lg":"2rem","margin":"2rem","gutter":"1.5rem","space-3xl":"4rem","space-2xl":"3rem","space-xl":"2rem"},"fontFamily":{"label-sm":["Plus Jakarta Sans"],"display-hero-mobile":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"code-sm":["JetBrains Mono"],"headline-xl":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"display-hero":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"]},"fontSize":{"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"700"}],"display-hero-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.025em","fontWeight":"800"}],"headline-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["14px",{"lineHeight":"22px","letterSpacing":"0em","fontWeight":"500"}],"label-md":["13px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"600"}],"code-sm":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"500"}],"headline-xl":["40px",{"lineHeight":"48px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-lg-mobile":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"700"}],"headline-sm":["18px",{"lineHeight":"26px","letterSpacing":"-0.01em","fontWeight":"600"}],"display-hero":["56px",{"lineHeight":"64px","letterSpacing":"-0.03em","fontWeight":"800"}],"body-sm":["13px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"400"}],"body-lg":["16px",{"lineHeight":"26px","letterSpacing":"-0.005em","fontWeight":"500"}],"headline-xl-mobile":["30px",{"lineHeight":"38px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}]}}}};</script>  <link rel="stylesheet" href="../shared/demo-app.css"/>
+</head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary selection:text-on-primary"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest border-r border-slate-200/80 shadow-[0_1px_8px_rgba(15,23,42,0.04)] z-50 flex flex-col justify-between"><div class="flex flex-col min-h-0 flex-1"><div class="h-16 px-space-lg flex items-center gap-space-sm border-b border-slate-100 flex-shrink-0"><div class="h-8 w-8 rounded-lg bg-gradient-to-tr from-primary via-primary-container to-secondary flex items-center justify-center text-white shadow-sm"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg></div><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-extrabold">Contently</span></div><div class="overflow-y-auto flex-1 px-space-md py-space-sm"><nav class="flex flex-col gap-1" data-active-classes="bg-primary-container text-on-primary-container font-bold shadow-sm"><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="dashboard" href="#"><svg class="w-4 h-4 text-slate-500 group-hover:text-primary transition-colors flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg><span class="font-label-md text-label-md flex-1">Dashboard</span></a><a class="flex items-center justify-between px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="ai-studio" href="#"><div class="flex items-center gap-space-sm"><svg class="w-4 h-4 text-slate-500 group-hover:text-primary transition-colors flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path><path d="M5 3v4"></path><path d="M19 17v4"></path><path d="M3 5h4"></path><path d="M17 19h4"></path></svg><span class="font-label-md text-label-md">AI Studio</span></div><span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded-full bg-secondary-container/80 text-on-secondary-container font-semibold tracking-wide uppercase text-[10px]">New</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="content-repurposing" href="#"><svg class="w-4 h-4 text-slate-500 group-hover:text-primary transition-colors flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="m17 2 4 4-4 4"></path><path d="M3 11v-1a4 4 0 0 1 4-4h14"></path><path d="m7 22-4-4 4-4"></path><path d="M21 13v1a4 4 0 0 1-4 4H3"></path></svg><span class="font-label-md text-label-md flex-1">Content Repurposing</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="templates" href="#"><svg class="w-4 h-4 text-slate-500 group-hover:text-primary transition-colors flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect height="7" rx="1" width="7" x="3" y="3"></rect><rect height="7" rx="1" width="7" x="14" y="3"></rect><rect height="7" rx="1" width="7" x="14" y="14"></rect><rect height="7" rx="1" width="7" x="3" y="14"></rect></svg><span class="font-label-md text-label-md flex-1">Templates</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="content-library" href="#"><svg class="w-4 h-4 text-slate-500 group-hover:text-primary transition-colors flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"></path></svg><span class="font-label-md text-label-md flex-1">Content Library</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="content-editor" href="#"><svg class="w-4 h-4 text-slate-500 group-hover:text-primary transition-colors flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4"></path></svg><span class="font-label-md text-label-md flex-1">Content Editor</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="content-planner" href="#"><svg class="w-4 h-4 text-slate-500 group-hover:text-primary transition-colors flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="4"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg><span class="font-label-md text-label-md flex-1">Content Planner</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-2 rounded-lg transition-all group bg-primary-container text-on-primary-container font-bold shadow-sm" data-path="brand-kit" href="#"><svg class="w-4 h-4 text-slate-500 group-hover:text-primary transition-colors flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="13.5" cy="6.5" r=".5"></circle><circle cx="17.5" cy="10.5" r=".5"></circle><circle cx="8.5" cy="7.5" r=".5"></circle><circle cx="6.5" cy="12.5" r=".5"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path></svg><span class="font-label-md text-label-md flex-1">Brand Kit</span></a><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="seo-assistant" href="#"><svg class="w-4 h-4 text-slate-500 group-hover:text-primary transition-colors flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="m21 21-4.3-4.3"></path><circle cx="10" cy="10" r="7"></circle><path d="M10 7v6"></path><path d="M7 10h6"></path></svg><span class="font-label-md text-label-md flex-1">SEO Assistant</span></a><div class="my-space-sm mx-space-sm h-px bg-slate-200/70"></div><a class="flex items-center gap-space-sm px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="profile-settings" href="#"><svg class="w-4 h-4 text-slate-500 group-hover:text-primary transition-colors flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg><span class="font-label-md text-label-md flex-1">Profile &amp; Settings</span></a></nav></div></div><div class="p-space-md border-t border-slate-100 flex-shrink-0"><div class="flex items-center gap-space-sm p-space-sm rounded-xl bg-surface-container-low border border-slate-200/50"><img alt="Omkar avatar" class="w-9 h-9 rounded-full object-cover ring-2 ring-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ9-i1Rr_McZcEqHc300dlnvuSl4X_Jr1rT14gwFcUXtv77NmEtv6OO15aZDoL77BbQt8I0v6Gwm8gjSzG2mxICW1gndG6NwIaZk4ydrYnQqO4TYzUfv3OpPvhd6q5CSiTp_f1L9KFMsZCMXcQ8XiwS815pzIOaNc-69wDKmVt4Yz8Gg5uZ2cFsnBljp66brow6kVCYb64xr8tZZsprLOgT4x0Z6q5CPuKpgVUvuc"/><div class="flex flex-col min-w-0 flex-1"><span class="font-label-md text-label-md text-on-surface truncate">Omkar</span><span class="font-label-sm text-label-sm text-primary font-bold">Pro Creator</span></div><svg class="w-4 h-4 text-on-surface-variant flex-shrink-0 cursor-pointer hover:text-on-surface" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="7 15 12 20 17 15"></polyline><polyline points="7 9 12 4 17 9"></polyline></svg></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/80 backdrop-blur-xl border-b border-slate-200/70 shadow-[0_1px_8px_rgba(15,23,42,0.04)] z-40 flex items-center justify-between px-space-xl"><div class="flex items-center gap-space-sm w-80"><div class="flex items-center gap-space-xs w-full bg-surface-container-low px-space-md py-space-xs rounded-lg text-on-surface-variant border border-slate-200/60"><svg class="w-4 h-4 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg><span class="font-body-sm text-body-sm text-outline flex-1">Search content, prompts, files...</span><kbd class="font-code-sm text-code-sm bg-surface-container-lowest text-on-surface-variant px-space-xs py-0.5 rounded shadow-sm border border-slate-200/70">⌘K</kbd></div></div><div class="flex items-center gap-space-md"><button class="interactive-ai-trigger flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-gradient-to-r from-primary-container to-secondary text-on-primary font-label-md text-label-md shadow-[0_4px_14px_0_rgba(79,70,229,0.2)] hover:opacity-95 transition-all" type="button"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg><span>Create</span></button><button class="relative p-space-xs rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error"></span></button><img alt="Omkar avatar" class="w-8 h-8 rounded-full object-cover shadow-sm ring-2 ring-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ9-i1Rr_McZcEqHc300dlnvuSl4X_Jr1rT14gwFcUXtv77NmEtv6OO15aZDoL77BbQt8I0v6Gwm8gjSzG2mxICW1gndG6NwIaZk4ydrYnQqO4TYzUfv3OpPvhd6q5CSiTp_f1L9KFMsZCMXcQ8XiwS815pzIOaNc-69wDKmVt4Yz8Gg5uZ2cFsnBljp66brow6kVCYb64xr8tZZsprLOgT4x0Z6q5CPuKpgVUvuc"/></div></header><main class="relative pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="relative w-full px-margin-desktop py-space-xl overflow-hidden">
+<div class="absolute -top-32 -right-24 w-96 h-96 rounded-full bg-primary/10 blur-3xl pointer-events-none animate-ambient-slow"></div>
+<div class="absolute top-80 -left-20 w-80 h-80 rounded-full bg-secondary-container/20 blur-3xl pointer-events-none animate-ambient-slow-delay"></div>
+<div class="relative flex flex-col gap-space-xl max-w-[1520px] mx-auto w-full">
+<div class="flex flex-col xl:flex-row xl:items-end justify-between gap-space-lg">
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-0.5 rounded-full bg-surface-container w-fit">
+<span class="inline-block w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-code-sm text-code-sm text-primary uppercase tracking-widest font-semibold">Voice Model v4.2 Deterministic</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface font-extrabold tracking-tight">Brand Kit &amp; AI Voice Calibration</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Configure your distinct linguistic profile, vocabulary rules, audience personas, and messaging guidelines.</p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="flex items-center gap-space-xs px-space-md py-2.5 rounded-xl bg-surface-container-lowest shadow-sm">
+<svg class="w-4 h-4 text-primary flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="font-body-sm text-body-sm text-on-surface">Omkar - Default <span class="text-primary font-semibold">(98.4% alignment)</span></span>
+</div>
+<button class="inline-flex items-center gap-space-xs px-space-md py-2.5 rounded-xl bg-surface-container-lowest text-on-surface hover:bg-surface-container font-label-md text-label-md transition-all shadow-sm" type="button">
+<svg class="w-4 h-4 text-on-surface-variant" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 4.5v15m7.5-7.5h-15" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>New Profile</span>
+</button>
+<button class="gleam-shimmer inline-flex items-center gap-space-xs px-space-lg py-2.5 rounded-xl bg-gradient-to-r from-primary via-primary-container to-secondary text-on-primary font-label-md text-label-md shadow-[0_4px_14px_0_rgba(79,70,229,0.28)] hover:opacity-95 active:scale-95 transition-all" id="saveChangesBtn" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="m4.5 12.75 6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Save Changes</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<div class="lg:col-span-8 flex flex-col gap-space-lg">
+<section class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-2 h-6 bg-primary rounded-full"></div>
+<span class="font-code-sm text-code-sm text-outline uppercase tracking-wider font-semibold">Section 01</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface ml-space-xs">Brand Fundamentals</h2>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container-low px-space-sm py-1 rounded-full font-bold">Synchronized</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md pt-space-xs">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-semibold" for="brand-name">Brand Name &amp; Alias</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md rounded-xl px-space-md py-2.5 focus:outline-none focus:bg-surface-container-lowest shadow-inner" id="brand-name" type="text" value="Contently / Omkar"/>
+<span class="absolute right-3 top-3 text-on-surface-variant font-code-sm text-code-sm">ID: #001</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-semibold" for="brand-domain">Industry Verticals</label>
+<input class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md rounded-xl px-space-md py-2.5 focus:outline-none focus:bg-surface-container-lowest shadow-inner" id="brand-domain" type="text" value="B2B SaaS, Artificial Intelligence, Developer Tools"/>
+</div>
+<div class="md:col-span-2 flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface font-semibold" for="positioning-statement">One-line Positioning Anchor</label>
+<span class="font-code-sm text-code-sm text-outline">89 / 120 chars</span>
+</div>
+<textarea class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md rounded-xl p-space-md focus:outline-none focus:bg-surface-container-lowest shadow-inner resize-none" id="positioning-statement" rows="2">High-leverage AI-native content strategy for modern B2B founders and engineering leads</textarea>
+</div>
+</div>
+</section>
+<section class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-2 h-6 bg-primary-container rounded-full"></div>
+<span class="font-code-sm text-code-sm text-outline uppercase tracking-wider font-semibold">Section 02</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface ml-space-xs">Tone &amp; Linguistic Calibrators</h2>
+</div>
+<div class="flex items-center gap-space-xs text-primary font-code-sm text-code-sm">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Dynamic Weighting</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-space-xl gap-y-space-lg">
+<div class="flex flex-col gap-space-xs p-space-md rounded-xl bg-surface-container-low/70">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">Formality</span>
+<span class="font-code-sm text-code-sm px-2 py-0.5 rounded bg-surface-container-lowest text-primary font-bold shadow-sm" id="formalityVal">70% Professional</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm mt-1">
+<span>Casual &amp; Conversational</span>
+<span>Boardroom Formal</span>
+</div>
+<input class="w-full accent-primary cursor-pointer mt-1" id="sliderFormality" max="100" min="0" type="range" value="70"/>
+</div>
+<div class="flex flex-col gap-space-xs p-space-md rounded-xl bg-surface-container-low/70">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">Density &amp; Pace</span>
+<span class="font-code-sm text-code-sm px-2 py-0.5 rounded bg-surface-container-lowest text-primary font-bold shadow-sm" id="densityVal">85% Concise</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm mt-1">
+<span>Concise &amp; Punchy</span>
+<span>Explanatory &amp; Verbose</span>
+</div>
+<input class="w-full accent-primary cursor-pointer mt-1" id="sliderDensity" max="100" min="0" type="range" value="85"/>
+</div>
+<div class="flex flex-col gap-space-xs p-space-md rounded-xl bg-surface-container-low/70">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">Directness &amp; Edge</span>
+<span class="font-code-sm text-code-sm px-2 py-0.5 rounded bg-surface-container-lowest text-primary font-bold shadow-sm" id="edgeVal">90% Bold</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm mt-1">
+<span>Diplomatic &amp; Safe</span>
+<span>Bold &amp; Contrarian</span>
+</div>
+<input class="w-full accent-primary cursor-pointer mt-1" id="sliderEdge" max="100" min="0" type="range" value="90"/>
+</div>
+<div class="flex flex-col gap-space-xs p-space-md rounded-xl bg-surface-container-low/70">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-bold">Technical Depth</span>
+<span class="font-code-sm text-code-sm px-2 py-0.5 rounded bg-surface-container-lowest text-primary font-bold shadow-sm" id="techVal">75% Technical</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm mt-1">
+<span>Executive / High-Level</span>
+<span>Deep Architecture</span>
+</div>
+<input class="w-full accent-primary cursor-pointer mt-1" id="sliderTech" max="100" min="0" type="range" value="75"/>
+</div>
+</div>
+</section>
+<section class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-2 h-6 bg-secondary rounded-full"></div>
+<span class="font-code-sm text-code-sm text-outline uppercase tracking-wider font-semibold">Section 03</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface ml-space-xs">Vocabulary &amp; Keyword Governance</h2>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Automated regex validation active</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<div class="flex flex-col gap-space-sm p-space-md rounded-2xl bg-surface-container-low">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="m4.5 12.75 6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="font-label-md text-label-md text-on-surface font-bold">Preferred Lexicon</span>
+</div>
+<span class="font-code-sm text-code-sm text-primary font-semibold" id="preferredCount">6 registered</span>
+</div>
+<div class="flex flex-wrap gap-2 min-h-24" id="preferredTagsContainer">
+<span class="group inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-lowest text-on-surface font-code-sm text-code-sm shadow-sm hover:bg-surface-container-high transition-colors">
+                    leverage
+                    <button class="remove-tag text-outline group-hover:text-error" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+</span>
+<span class="group inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-lowest text-on-surface font-code-sm text-code-sm shadow-sm hover:bg-surface-container-high transition-colors">
+                    paradigm shift
+                    <button class="remove-tag text-outline group-hover:text-error" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+</span>
+<span class="group inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-lowest text-on-surface font-code-sm text-code-sm shadow-sm hover:bg-surface-container-high transition-colors">
+                    deterministic
+                    <button class="remove-tag text-outline group-hover:text-error" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+</span>
+<span class="group inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-lowest text-on-surface font-code-sm text-code-sm shadow-sm hover:bg-surface-container-high transition-colors">
+                    first-principles
+                    <button class="remove-tag text-outline group-hover:text-error" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+</span>
+<span class="group inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-lowest text-on-surface font-code-sm text-code-sm shadow-sm hover:bg-surface-container-high transition-colors">
+                    signal-to-noise ratio
+                    <button class="remove-tag text-outline group-hover:text-error" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+</span>
+<span class="group inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-lowest text-on-surface font-code-sm text-code-sm shadow-sm hover:bg-surface-container-high transition-colors">
+                    operational velocity
+                    <button class="remove-tag text-outline group-hover:text-error" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+</span>
+</div>
+<div class="flex items-center gap-space-xs mt-auto pt-2">
+<input class="flex-1 bg-surface-container-lowest text-on-surface font-body-sm text-body-sm rounded-lg px-3 py-2 focus:outline-none shadow-sm" id="newPreferredInput" placeholder="Add keyword + Enter..." type="text"/>
+<button class="px-3 py-2 bg-primary text-on-primary font-label-sm text-label-sm rounded-lg shadow hover:opacity-90 transition-opacity" id="addPreferredBtn" type="button">Add</button>
+</div>
+</div>
+<div class="flex flex-col gap-space-sm p-space-md rounded-2xl bg-error-container/25">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<svg class="w-4 h-4 text-error" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="font-label-md text-label-md text-on-surface font-bold">Forbidden Clichés &amp; Buzzwords</span>
+</div>
+<span class="font-code-sm text-code-sm text-error font-semibold" id="forbiddenCount">6 blocked</span>
+</div>
+<div class="flex flex-wrap gap-2 min-h-24" id="forbiddenTagsContainer">
+<span class="group inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-lowest text-error font-code-sm text-code-sm shadow-sm hover:bg-error-container/40 transition-colors">
+                    game-changer
+                    <button class="remove-tag text-outline group-hover:text-error" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+</span>
+<span class="group inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-lowest text-error font-code-sm text-code-sm shadow-sm hover:bg-error-container/40 transition-colors">
+                    unleash
+                    <button class="remove-tag text-outline group-hover:text-error" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+</span>
+<span class="group inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-lowest text-error font-code-sm text-code-sm shadow-sm hover:bg-error-container/40 transition-colors">
+                    delve
+                    <button class="remove-tag text-outline group-hover:text-error" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+</span>
+<span class="group inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-lowest text-error font-code-sm text-code-sm shadow-sm hover:bg-error-container/40 transition-colors">
+                    supercharge
+                    <button class="remove-tag text-outline group-hover:text-error" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+</span>
+<span class="group inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-lowest text-error font-code-sm text-code-sm shadow-sm hover:bg-error-container/40 transition-colors">
+                    revolutionary
+                    <button class="remove-tag text-outline group-hover:text-error" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+</span>
+<span class="group inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-lowest text-error font-code-sm text-code-sm shadow-sm hover:bg-error-container/40 transition-colors">
+                    in today's fast-paced world
+                    <button class="remove-tag text-outline group-hover:text-error" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+</span>
+</div>
+<div class="flex items-center gap-space-xs mt-auto pt-2">
+<input class="flex-1 bg-surface-container-lowest text-on-surface font-body-sm text-body-sm rounded-lg px-3 py-2 focus:outline-none shadow-sm" id="newForbiddenInput" placeholder="Block cliché phrase + Enter..." type="text"/>
+<button class="px-3 py-2 bg-error text-on-error font-label-sm text-label-sm rounded-lg shadow hover:opacity-90 transition-opacity" id="addForbiddenBtn" type="button">Block</button>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-2 h-6 bg-tertiary rounded-full"></div>
+<span class="font-code-sm text-code-sm text-outline uppercase tracking-wider font-semibold">Section 04</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface ml-space-xs">Audience Personas &amp; Cognitive Maps</h2>
+</div>
+<button class="inline-flex items-center gap-1 text-primary hover:text-on-surface font-label-md text-label-md transition-colors" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 4.5v15m7.5-7.5h-15" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span>Add Persona</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="p-space-md rounded-2xl bg-surface-container-low flex flex-col gap-space-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full -mr-8 -mt-8 pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Technical Founders &amp; CTOs</h3>
+<span class="font-code-sm text-code-sm text-primary font-semibold">Primary Target (Weight: 60%)</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-sm text-label-sm">Active</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Zero patience for marketing hand-waving. Cares about resilient architectural trade-offs, reproducible benchmarks, deterministic latency, and engineering unit economics.</p>
+<div class="flex flex-wrap gap-1.5 pt-2">
+<span class="px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface font-code-sm text-code-sm">Direct Tone</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface font-code-sm text-code-sm">Architecture ROI</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface font-code-sm text-code-sm">Code First</span>
+</div>
+</div>
+<div class="p-space-md rounded-2xl bg-surface-container-low flex flex-col gap-space-sm relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="absolute top-0 right-0 w-24 h-24 bg-secondary/5 rounded-full -mr-8 -mt-8 pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center text-secondary">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Growth &amp; Product Marketers</h3>
+<span class="font-code-sm text-code-sm text-secondary font-semibold">Secondary Target (Weight: 40%)</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-sm text-label-sm">Active</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Metrics-driven, relentlessly focused on CTR, bottom-of-funnel velocity, organic virality loops, and repeatable distribution frameworks across channels.</p>
+<div class="flex flex-wrap gap-1.5 pt-2">
+<span class="px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface font-code-sm text-code-sm">Data Driven</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface font-code-sm text-code-sm">Distribution</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface font-code-sm text-code-sm">Conversion Ops</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="lg:col-span-4 flex flex-col gap-space-lg lg:sticky lg:top-20">
+<section class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-xl relative overflow-hidden flex flex-col gap-space-md">
+<div class="absolute -top-12 -right-12 w-44 h-44 rounded-full bg-primary/10 blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Live Calibration Sandbox</h3>
+</div>
+<span class="font-code-sm text-code-sm text-primary bg-primary-fixed px-2 py-0.5 rounded-full font-bold">Real-time</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Type a core premise to preview how your customized parameters purify output compared to vanilla LLM models.</p>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface font-semibold" for="simulationPrompt">Test Prompt</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low text-on-surface font-body-sm text-body-sm rounded-xl pl-3 pr-20 py-2.5 focus:outline-none focus:bg-surface-container-lowest shadow-inner" id="simulationPrompt" type="text" value="Why LLMs need structured retrieval for code refactoring"/>
+<button class="absolute right-1.5 top-1.5 px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-sm text-label-sm hover:opacity-90 transition-opacity" id="runSimulationBtn" type="button">Run</button>
+</div>
+</div>
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<div class="flex flex-col gap-1 p-space-md rounded-xl bg-error-container/20">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5 text-error">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-bold">Generic AI Engine</span>
+</div>
+<span class="font-code-sm text-code-sm text-error">Contains 4 Fluff Triggers</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed" id="genericOutput">
+                  "In today's fast-paced world, artificial intelligence is truly a <mark class="bg-error/20 text-error font-semibold px-1 rounded">game-changer</mark>. We can <mark class="bg-error/20 text-error font-semibold px-1 rounded">delve</mark> into models to <mark class="bg-error/20 text-error font-semibold px-1 rounded">supercharge</mark> codebase upgrades and create a <mark class="bg-error/20 text-error font-semibold px-1 rounded">revolutionary</mark> developer journey."
+                </p>
+</div>
+<div class="flex flex-col gap-1 p-space-md rounded-xl bg-surface-container-low shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5 text-primary">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><path d="m4.5 12.75 6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-bold">Contently Calibrated</span>
+</div>
+<span class="font-code-sm text-code-sm text-primary font-bold">0% Cliché | 99% Signal</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface mt-1 leading-relaxed font-medium" id="calibratedOutput">
+                  "Unconstrained LLMs hallucinate syntax boundaries. By enforcing deterministic AST index retrieval, engineering leads maximize the code review signal-to-noise ratio while preserving operational velocity."
+                </p>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container flex flex-col gap-2 mt-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Voice Alignment Score</span>
+<span class="font-code-sm text-code-sm text-primary font-extrabold">98.4 / 100</span>
+</div>
+<div class="w-full bg-surface-container-highest h-2 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary via-primary-container to-secondary rounded-full" style="width: 98.4%;"></div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-code-sm text-code-sm pt-1">
+<span>128 generations logged</span>
+<span>Latency ~240ms</span>
+</div>
+</div>
+</section>
+<div class="p-space-md rounded-2xl bg-surface-container-low flex items-start gap-space-sm">
+<div class="p-2 rounded-lg bg-surface-container-lowest text-primary shadow-sm flex-shrink-0">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.516 0c.85.493 1.509 1.333 1.509 2.316V18" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div class="flex flex-col gap-0.5">
+<h4 class="font-label-md text-label-md text-on-surface font-bold">Pro Tip: Strict Negative Prompting</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Adding banned terms physically removes token logits from candidate completion paths, ensuring zero accidental leaks.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fixed bottom-6 right-6 hidden z-50 bg-inverse-surface text-inverse-on-surface px-space-md py-3 rounded-xl shadow-2xl items-center gap-space-sm" id="saveToast">
+<svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="m4.5 12.75 6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="font-body-sm text-body-sm font-semibold">Brand profile saved and AI parameters updated!</span>
+</div>
+<script>
+    (function() {
+      const sliderFormality = document.getElementById('sliderFormality');
+      const formalityVal = document.getElementById('formalityVal');
+      sliderFormality.addEventListener('input', (e) => {
+        const val = e.target.value;
+        const label = val > 60 ? 'Professional' : val > 30 ? 'Balanced' : 'Conversational';
+        formalityVal.textContent = val + '% ' + label;
+      });
+
+      const sliderDensity = document.getElementById('sliderDensity');
+      const densityVal = document.getElementById('densityVal');
+      sliderDensity.addEventListener('input', (e) => {
+        const val = e.target.value;
+        const label = val > 60 ? 'Concise' : val > 30 ? 'Moderate' : 'Expository';
+        densityVal.textContent = val + '% ' + label;
+      });
+
+      const sliderEdge = document.getElementById('sliderEdge');
+      const edgeVal = document.getElementById('edgeVal');
+      sliderEdge.addEventListener('input', (e) => {
+        const val = e.target.value;
+        const label = val > 65 ? 'Bold' : val > 35 ? 'Pragmatic' : 'Diplomatic';
+        edgeVal.textContent = val + '% ' + label;
+      });
+
+      const sliderTech = document.getElementById('sliderTech');
+      const techVal = document.getElementById('techVal');
+      sliderTech.addEventListener('input', (e) => {
+        const val = e.target.value;
+        const label = val > 60 ? 'Technical' : val > 30 ? 'Functional' : 'Executive';
+        techVal.textContent = val + '% ' + label;
+      });
+
+      function createTag(text, isForbidden) {
+        const span = document.createElement('span');
+        span.className = isForbidden
+          ? 'group inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-lowest text-error font-code-sm text-code-sm shadow-sm hover:bg-error-container/40 transition-colors'
+          : 'group inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-lowest text-on-surface font-code-sm text-code-sm shadow-sm hover:bg-surface-container-high transition-colors';
+        span.innerHTML = text + '<button type="button" class="remove-tag text-outline group-hover:text-error"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path></svg></button>';
+        return span;
+      }
+
+      function updateCounts() {
+        const prefContainer = document.getElementById('preferredTagsContainer');
+        const forbContainer = document.getElementById('forbiddenTagsContainer');
+        document.getElementById('preferredCount').textContent = prefContainer.children.length + ' registered';
+        document.getElementById('forbiddenCount').textContent = forbContainer.children.length + ' blocked';
+      }
+
+      document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.remove-tag');
+        if (btn) {
+          const tag = btn.parentElement;
+          tag.remove();
+          updateCounts();
+        }
+      });
+
+      const addPrefBtn = document.getElementById('addPreferredBtn');
+      const newPrefInput = document.getElementById('newPreferredInput');
+      const prefContainer = document.getElementById('preferredTagsContainer');
+
+      function addPreferred() {
+        const val = newPrefInput.value.trim();
+        if (val) {
+          prefContainer.appendChild(createTag(val, false));
+          newPrefInput.value = '';
+          updateCounts();
+        }
+      }
+      addPrefBtn.addEventListener('click', addPreferred);
+      newPrefInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') addPreferred(); });
+
+      const addForbBtn = document.getElementById('addForbiddenBtn');
+      const newForbInput = document.getElementById('newForbiddenInput');
+      const forbContainer = document.getElementById('forbiddenTagsContainer');
+
+      function addForbidden() {
+        const val = newForbInput.value.trim();
+        if (val) {
+          forbContainer.appendChild(createTag(val, true));
+          newForbInput.value = '';
+          updateCounts();
+        }
+      }
+      addForbBtn.addEventListener('click', addForbidden);
+      newForbInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') addForbidden(); });
+
+      const runSimBtn = document.getElementById('runSimulationBtn');
+      const simInput = document.getElementById('simulationPrompt');
+      const calibratedOutput = document.getElementById('calibratedOutput');
+      const genericOutput = document.getElementById('genericOutput');
+
+      runSimBtn.addEventListener('click', () => {
+        const prompt = simInput.value.trim().toLowerCase();
+        runSimBtn.innerHTML = 'Testing...';
+        setTimeout(() => {
+          runSimBtn.innerHTML = 'Run';
+          if (prompt.includes('price') || prompt.includes('cost') || prompt.includes('saas')) {
+            genericOutput.innerHTML = '"In the fast-paced modern world, you can <mark class=\'bg-error/20 text-error font-semibold px-1 rounded\'>supercharge</mark> pricing with <mark class=\'bg-error/20 text-error font-semibold px-1 rounded\'>game-changer</mark> AI to delight customers."';
+            calibratedOutput.textContent = '"Value capture scales with consumption metrics. By decoupling tier caps from user seats, founders elevate ARR conversion velocity with zero marginal friction."';
+          } else {
+            genericOutput.innerHTML = '"We are thrilled to <mark class=\'bg-error/20 text-error font-semibold px-1 rounded\'>delve</mark> into this topic and <mark class=\'bg-error/20 text-error font-semibold px-1 rounded\'>unleash</mark> endless <mark class=\'bg-error/20 text-error font-semibold px-1 rounded\'>revolutionary</mark> possibilities!"';
+            calibratedOutput.textContent = '"Deterministic outputs require strict architectural guardrails. We isolate key signals from noise and eliminate non-essential filler."';
+          }
+        }, 300);
+      });
+
+      const saveBtn = document.getElementById('saveChangesBtn');
+      const toast = document.getElementById('saveToast');
+      saveBtn.addEventListener('click', () => {
+        toast.classList.remove('hidden');
+        toast.classList.add('flex', 'toast-spring-in');
+        setTimeout(() => {
+          toast.classList.add('hidden');
+          toast.classList.remove('flex', 'toast-spring-in');
+        }, 3200);
+      });
+    })();
+  </script>
+</div></main></div>  <script src="../shared/demo-app.js"></script>
+</body></html>
